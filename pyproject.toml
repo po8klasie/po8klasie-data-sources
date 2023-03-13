@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "po8klasie-data-sources"
+version = "0.1.0"
+description = ""
+authors = ["Michał Oręziak <micorix.dev@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-dotenv = "^1.0.0"
+termcolor = "^2.2.0"
+po8klasie-fastapi = {git = "https://github.com/po8klasie/po8klasie-fastapi"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+flake8 = "^6.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
