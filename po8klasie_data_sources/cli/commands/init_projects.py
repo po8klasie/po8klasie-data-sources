@@ -1,5 +1,5 @@
 from po8klasie_data_sources.lib.environment_manager import EnvironmentManager
-from db.models import Project
+from po8klasie_fastapi.db.models import Project
 
 
 def init_projects(
