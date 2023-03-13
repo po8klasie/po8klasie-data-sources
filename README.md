@@ -71,12 +71,6 @@ Intermediate files should not be checked out to data-manager repo
 
 ## Setup
 
-You can find example of data-manager repo [here](https://github.com/po8klasie/data-management-example)
-
-Because project is in early stage, example repo can become outdated quickly. 
-We'll be doing best we can to make sure it's always up-to-date, but that may not always be the case. 
-We're sorry about that.
-
 ### Setting up data_manager.py file
 
 ```python
