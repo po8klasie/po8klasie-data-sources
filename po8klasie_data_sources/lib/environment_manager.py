@@ -52,7 +52,7 @@ class EnvironmentManager:
     def _init_db(self):
         if not hasattr(self.config, "DATABASE_URL"):
             raise Exception("DATABASE_URL not found in config module")
-        self.db = DatabaseManager(database_url=self.config["DATABASE_URL"])
+        self.db = DatabaseManager(database_url=self.config.DATABASE_URL)
 
     def _init_data_sources(self):
         self.initialized_data_sources = []
