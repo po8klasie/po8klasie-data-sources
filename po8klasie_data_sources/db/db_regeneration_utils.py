@@ -14,7 +14,7 @@ def drop_all(engine):
 
 
 def create_all(engine):
-    from db.models import Base
+    from po8klasie_fastapi.db.models import Base
 
     Base.metadata.reflect(bind=engine)
     Base.metadata.create_all(bind=engine)
