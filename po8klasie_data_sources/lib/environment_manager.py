@@ -65,8 +65,8 @@ class EnvironmentManager:
         if self.is_environment_loaded:
             return
         self.environment_string = self._validate_environment_string(environment_string)
-        self._load_configs()
         self._load_env_vars()
+        self._load_configs()
         self._init_db()
         self._set_intermediate_files_dir_path(
             override_intermediate_files_dir=override_intermediate_files_dir
