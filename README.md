@@ -111,6 +111,7 @@ if __name__ == "__main__":
 Idea of config module is similar to django's settings.py file
 
 Config module must include variables:
+* `DATABASE_URL` - database connection string
 * `INTERMEDIATE_FILES_DIR` - intermediate files dir path relative to `data-manager.py` file
 * `PROJECT_CONFIGS` - project configs structured like below
 * `<uppercased data source id>_DATA_SOURCE_CONFIG` variables for each data source (always a dict)
@@ -119,25 +120,34 @@ Config module must include variables:
 > NOTE: You can use env vars here. They'll be loaded based on selected environment
 
 Example:
+
 ```python
+import os
+
+DATABASE_URL = os.environ.get("DATABASE_URL")
 INTERMEDIATE_FILES_DIR = "./data/intermediate_files/local"
 
 PROJECT_CONFIGS = [
-    {
-        'project_id': 'gdynia',
-        'project_name': 'Gdynia'
-    },
+  {
+    'project_id': 'gdynia',
+    'project_name': 'Gdynia'
+  },
 ]
 
 RSPO_DATA_SOURCE_CONFIG = {
-    'borough_names_per_project': {
-        'gdynia': ['gdynia']
-    }
+  'borough_names_per_project': {
+    'gdynia': ['gdynia']
+  }
 }
 
 OSM_PUBLIC_TRANSPORT_INFO_DATA_SOURCE_CONFIG = {
-    'stop_distance_from_institution': 250
+  'stop_distance_from_institution': 250
 }
+```
+
+`.env.local` file:
+```text
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
 ```
 
 ## CLI usage

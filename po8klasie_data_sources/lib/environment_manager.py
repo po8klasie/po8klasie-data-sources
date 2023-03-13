@@ -1,7 +1,7 @@
 import importlib
 from typing import List, Dict, Any
 from os import path
-from dotenv import dotenv_values
+from dotenv import load_dotenv
 
 from po8klasie_data_sources.db.db import DatabaseManager
 
@@ -11,7 +11,7 @@ DEFAULT_ENVIRONMENT_STRING = "local"
 class EnvironmentManager:
     configs = {}
     _data_sources = []
-    config: Dict[str, Dict[str, Any]] = {}
+    config: Dict[str, Any] = {}
     env_vars = {}
     environment_string = None
     db: DatabaseManager
@@ -47,12 +47,12 @@ class EnvironmentManager:
         self.env_intermediate_files_dir_path = path.join(self.current_dir, dir_path)
 
     def _load_env_vars(self):
-        self.env_vars = dotenv_values(f".env.{self.environment_string}")
+        load_dotenv(f".env.{self.environment_string}")
 
     def _init_db(self):
-        if "DATABASE_URL" not in self.env_vars:
-            raise Exception("No DATABASE_URL env var supplied")
-        self.db = DatabaseManager(database_url=self.env_vars["DATABASE_URL"])
+        if "DATABASE_URL" not in self.config:
+            raise Exception("DATABASE_URL not found in config module")
+        self.db = DatabaseManager(database_url=self.config["DATABASE_URL"])
 
     def _init_data_sources(self):
         self.initialized_data_sources = []
