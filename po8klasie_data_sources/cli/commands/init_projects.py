@@ -1,6 +1,8 @@
 from po8klasie_data_sources.lib.environment_manager import EnvironmentManager
 
-from po8klasie_data_sources.project_configs.model_mapper import create_project_model_instance
+from po8klasie_data_sources.project_configs.model_mapper import (
+    create_project_model_instance,
+)
 
 
 def init_projects(
