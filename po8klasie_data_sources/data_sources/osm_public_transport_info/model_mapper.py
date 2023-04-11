@@ -1,3 +1,4 @@
+import shapely
 from sqlalchemy.exc import NoResultFound
 
 from po8klasie_fastapi.db.models import (
@@ -42,6 +43,15 @@ def map_public_transport_stop_to_model(db, stop_data):
             latitude=stop_data["latitude"],
             longitude=stop_data["longitude"],
             public_transport_routes=public_transport_routes,
+            geometry=shapely.geometry.Point(
+            map(
+                float,
+                (
+                    stop_data["longitude"],
+                    stop_data["latitude"],
+                ),
+            )
+        ).wkt
         )
 
 
