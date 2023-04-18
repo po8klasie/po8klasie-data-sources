@@ -12,9 +12,7 @@ def create_institution_records(db, project_id: str, data):
             rspo_institution=create_model_from_rspo_institution_data(institution_data),
             available_languages=[],
             available_extended_subjects=[],
-            points_stats_max=1000,
-            points_stats_min=-1,
-            project_id=project_id,
+            project_id=project_id
         )
 
         institution.geometry = shapely.geometry.Point(

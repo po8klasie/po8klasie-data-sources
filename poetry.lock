@@ -778,7 +778,7 @@ uvicorn = {version = "^0.21.0", extras = ["standard"]}
 type = "git"
 url = "https://github.com/po8klasie/po8klasie-fastapi"
 reference = "HEAD"
-resolved_reference = "429f451f53a87158236f79758d6d5bfbb7d8f289"
+resolved_reference = "33e078e613701b55d850dece01dc868d0e7dc968"
 
 [[package]]
 name = "psycopg2-binary"
