@@ -29,9 +29,9 @@ def create_or_update_projects(
 
             if not db_project_config:
                 db_project_config = Project(**model_args)
+                session.add(db_project_config)
             else:
                 for key, value in model_args.items():
                     setattr(db_project_config, key, value)
 
-            session.add(db_project_config)
         session.commit()
