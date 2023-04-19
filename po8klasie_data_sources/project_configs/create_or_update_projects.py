@@ -29,7 +29,7 @@ def create_or_update_projects(
             if not db_project_config.one_or_none():
                 db_project_config = Project(**model_args)
             else:
-                db_project_config.update(**model_args)
+                db_project_config.update(model_args)
 
             session.add(db_project_config)
         session.commit()
