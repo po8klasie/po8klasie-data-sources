@@ -21,12 +21,12 @@ def create_or_update_projects(
     with environment_manager.db.session() as session:
         for project_config_data in environment_manager.config.PROJECT_CONFIGS:
             project_id = project_config_data["project_id"]
-            db_project_config: Project | None = session.query(Project).filter(
-                Project.project_id == project_id).one_or_none()
+            db_project_config = session.query(Project).filter(
+                Project.project_id == project_id)
 
             model_args = create_project_model_args(project_config_data)
 
-            if not db_project_config:
+            if not db_project_config.one_or_none():
                 db_project_config = Project(**model_args)
             else:
                 db_project_config.update(**model_args)
