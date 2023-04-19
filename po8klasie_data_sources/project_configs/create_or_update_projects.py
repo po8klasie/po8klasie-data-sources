@@ -23,11 +23,11 @@ def create_or_update_projects(
             project_id = project_config_data["project_id"]
             db_project_config = session.query(Project).filter(
                 Project.project_id == project_id
-            )
+            ).one_or_none()
 
             model_args = create_project_model_args(project_config_data)
 
-            if not db_project_config.one_or_none():
+            if not db_project_config:
                 db_project_config = Project(**model_args)
             else:
                 for key, value in model_args.items():
