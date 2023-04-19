@@ -54,11 +54,11 @@ def create_records_command(
 @click.pass_obj
 def init_projects_command(obj, environment):
     """Init projects"""
-    from po8klasie_data_sources.cli.commands.init_projects import init_projects
+    from po8klasie_data_sources.project_configs.create_or_update_projects import create_or_update_projects
 
     obj["environment_manager"].load_environment(environment_string=environment)
 
-    init_projects(environment_manager=obj["environment_manager"])
+    create_or_update_projects(environment_manager=obj["environment_manager"])
 
     cli_logger.info("Created project records")
 
