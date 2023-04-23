@@ -40,4 +40,4 @@ class RspoDataSource(DataSource):
 
     class ConfigModel(DataSourceConfigBaseModel):
         borough_names_per_project: Dict[str, List[str]]
-        omit_rspos = Optional[list[str]] = []
+        omit_rspos: Optional[list[str]] = []
