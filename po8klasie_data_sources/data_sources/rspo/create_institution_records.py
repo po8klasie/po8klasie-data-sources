@@ -15,7 +15,7 @@ def create_institution_records(db, project_id: str, data, omit_rspos: list[str] 
             project_id=project_id
         )
 
-        if institution.rspo in omit_rspos:
+        if institution.rspo_institution.rspo in omit_rspos:
             continue
 
         institution.geometry = shapely.geometry.Point(
