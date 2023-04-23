@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 import urllib3
 
@@ -35,8 +35,9 @@ class RspoDataSource(DataSource):
         for filepath in Path(self.intermediate_files_dir_path).rglob("*.json"):
             with open(filepath, "r") as f:
                 institution_data = json.load(f)
-                create_institution_records(session, filepath.stem, institution_data)
+                create_institution_records(session, filepath.stem, institution_data, self.config.omit_rspos)
         session.commit()
 
     class ConfigModel(DataSourceConfigBaseModel):
         borough_names_per_project: Dict[str, List[str]]
+        omit_rspos = Optional[list[str]] = []

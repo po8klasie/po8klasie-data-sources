@@ -6,7 +6,7 @@ from po8klasie_data_sources.data_sources.rspo.model_mapper import (
 )
 
 
-def create_institution_records(db, project_id: str, data):
+def create_institution_records(db, project_id: str, data, omit_rspos: list[str] = ()):
     for institution_data in data:
         institution = SecondarySchoolInstitution(
             rspo_institution=create_model_from_rspo_institution_data(institution_data),
@@ -14,6 +14,9 @@ def create_institution_records(db, project_id: str, data):
             available_extended_subjects=[],
             project_id=project_id
         )
+
+        if institution.rspo in omit_rspos:
+            continue
 
         institution.geometry = shapely.geometry.Point(
             map(
