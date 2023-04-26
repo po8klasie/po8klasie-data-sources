@@ -59,10 +59,11 @@ class OSMPublicTransportInfoDataSource(DataSource):
             with open(filepath, "r") as f:
                 stops_data = json.load(f)
                 rspo = filepath.stem
-                institution = session.query(Institution).filter_by(rspo=rspo).one()
-                add_public_transport_data_to_institution_model(
-                    session, institution, stops_data
-                )
+                institution = session.query(Institution).filter_by(rspo=rspo).one_or_none()
+                if institution:
+                    add_public_transport_data_to_institution_model(
+                        session, institution, stops_data
+                    )
             session.commit()
 
     class ConfigModel(DataSourceConfigBaseModel):
